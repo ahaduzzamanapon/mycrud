@@ -1,172 +1,118 @@
 <div id="menu" role="navigation">
-    <style>
-        /* Main menu container */
-        .barrr {
-            background: linear-gradient(135deg, #13007D, #3819e7);
-            display: flex;
-            flex-direction: column;
-            padding: 20px 15px !important;
-            gap: 15px;
-            border-radius: 15px;
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-            height: 90vh!important;
-            overflow-y: auto;
-            top: 55px;
-            margin: 20px;
-            scrollbar-width: thin;
-            transition: all 0.3s ease;
-            width: 280px;
-            /* padding: 13px; */
-        }
-        @media (max-width: 767px) {
-            .barrr {
-                margin-left: -27px;
-            }
-        }
+    <ul class="navigation list-unstyled" id="demo">
+        <li><span class="close-icon d-xl-none d-lg-block"><img src="{{asset('img/images/input-disabled.png')}}"
+                    alt="image missing"></span></li>
 
-        /* Main menu item */
-        .barr2 {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 18px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Hover effect for menu items */
-        .barr2:hover {
-            background-color: #e0d6ff;
-            transform: translateX(8px);
-            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
-        }
-
-        .barr2 .menu-icon {
-            font-size: 22px;
-            color: #13007D;
-            transition: color 0.3s ease;
-        }
-
-        .barr2 .mm-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Dropdown arrow icon */
-        .imicon {
-            font-size: 20px;
-            color: #13007D;
-            transition: transform 0.4s ease, color 0.3s ease;
-        }
-
-        .menu-dropdown:hover .imicon {
-            transform: rotate(90deg);
-            color: rgb(58 0 255);
-        }
-
-        /* Sub-menu items */
-        .barr3 {
-            background: linear-gradient(135deg, #3819e7, #3819e7)!important;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding-left: 20px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            width: 97%;
-        }
-
-        /* Expand dropdown on hover */
-        .menu-dropdown.mm-active .barr3 {
-            max-height: 500px;
-            opacity: 1;
-        }
-
-        /* Sub-menu item styling */
-        .barr4 {
-            background: #ffffff;
-            border-radius: 14px;
-            border: 1px solid #ddd;
-            padding: 2px;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-
-        .barr4:hover {
-            background-color: #e0d6ff;
-            transform: scale(1.05);
-        }
-
-        /* Active state styling */
-        .barr4.active {
-            background-color: #e0d6ff;
-            color: white;
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .barr4.active a {
-            color: #000000!important;
-            font-weight: bolder;
-        }
-
-        .barr4 a {
-            text-decoration: none;
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .barr4 a:hover {
-            color: #13007D;
-            transform: translateX(4px);
-        }
-
-        /* Close icon styling */
-        .close-icon img {
-            width: 22px;
-            height: 22px;
-            opacity: 0.8;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .close-icon img:hover {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
-        /* Icon animations */
-        .menu-icon, .imicon, .close-icon img {
-            transition: transform 0.3s ease, color 0.3s ease, opacity 0.3s ease;
-        }
-        .barrr_res {
-            margin-left: 301px!important;
-        }
-        @media (min-width: 767px) {
-            .barrr_res {
-            margin-left: 0!important
-        }
-        }
-    </style>
-
-    <ul class="navigation list-unstyled barrr" id="demo">
-        <!-- Dashboard menu item -->
-        <li {!! Request::is('/*') ? 'class="active"' : '' !!}>
-            <a href="{{ URL::to('') }}" class="barr2">
-                <span class="mm-text">Dashboard</span>
+        <a href="{{ URL::to('index') }}" class="logo navbar-brand mr-0">
+            <h1 class="text-center">JOSH</h1>
+        </a>
+        <li {!! (Request::is('') ? 'class="active"' : '' ) !!}>
+            <a href="{{ URL::to('') }}">
+                <span class="mm-text ">Dashboard</span>
                 <span class="menu-icon"><i class="im im-icon-Home"></i></span>
             </a>
         </li>
 
-        @include('layouts/menu')
+        <li {!! (Request::is('builder') ? 'class="active"' : '' ) !!}>
+            <a href="{{ URL::to('builder') }}">
+                <span class="mm-text ">Crud Builder</span>
+                <span class="menu-icon"><i class="im im-icon-Gift-Box"></i></span>
+            </a>
+        </li>
 
+        {{-- <li {!! (Request::is('buttons') || Request::is('alerts') || Request::is('dropdown') || Request::is('cards') ||
+            Request::is('forms') || Request::is('form_layout')|| Request::is('form_examples') ||
+            Request::is('accordion') || Request::is('progress_bar') || Request::is('pagination') || Request::is('icons')
+            || Request::is('tabs') || Request::is('modals') ? 'class="menu-dropdown active"' : "class='menu-dropdown'" )
+            !!}>
+            <a href="#">
+                <span class="mm-text ">Content</span>
+                <span class="menu-icon "> <i class="im im-icon-Pen-4"></i></span>
+                <span class="im im-icon-Arrow-Right imicon"></span>
+            </a>
+            <ul class="sub-menu list-unstyled">
+                <li {!! (Request::is('alerts') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('alerts') }}">
+                        Alerts
+                    </a>
+                </li>
+                <li {!! (Request::is('buttons') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('buttons') }}">
+                        Buttons
+                    </a>
+                </li>
+                <li {!! (Request::is('cards') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('cards') }}">
+                        <span class="mm-text ">Cards</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('dropdown') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('dropdown') }}">
+
+                        <span class="mm-text ">Dropdown</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('forms') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('forms') }}">
+
+                        <span class="mm-text ">Forms</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('form_layout') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('form_layout') }}">
+
+                        <span class="mm-text ">Form Layouts</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('form_examples') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('form_examples') }}">
+
+                        <span class="mm-text ">Form Examples</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('accordion') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('accordion') }}">
+
+                        <span class="mm-text ">Accordion</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('progress_bar') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('progress_bar') }}">
+                        <span class="mm-text ">Progress Bar</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('pagination') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('pagination') }}">
+                        <span class="mm-text ">Pagination</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('icons') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('icons') }}">
+                        <span class="mm-text ">Icons</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('tabs') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('tabs') }}">
+                        <span class="mm-text ">Tabs</span>
+                    </a>
+                </li>
+                <li {!! (Request::is('modals') ? 'class="active"' : '' ) !!}>
+                    <a href="{{ URL::to('modals') }}">
+                        <span class="mm-text ">Modals</span>
+                    </a>
+                </li>
+            </ul>
+        </li> --}}
+
+     
+
+
+
+
+
+
+
+        @include("layouts/menu")
     </ul>
+    <!-- / .navigation -->
 </div>
