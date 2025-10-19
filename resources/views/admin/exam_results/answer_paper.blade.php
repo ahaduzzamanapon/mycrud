@@ -17,6 +17,9 @@
                 <hr>
 
                 @foreach($result->exam->questionPaper->questions as $key => $question)
+                    @php
+                        $studentAnswer = $studentAnswersMap[$question->id] ?? null;
+                    @endphp
                     <div class="card mb-3 {{ $studentAnswersMap[$question->id]->is_correct ? 'border-success' : 'border-danger' }}">
                         <div class="card-header">
                             Question {{ $key + 1 }}: {{ $question->question_text }} ({{ $question->pivot->marks }} Marks)
