@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\SalesController;
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 // login2, register2 pages
 Route::view('login2', 'auth.login2');
@@ -76,4 +76,18 @@ Route::get('empty_table', 'JoshController@emptyTable');
 Route::get('remove_all_files', 'JoshController@remove_all_files');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{name?}', 'JoshController@showView');
+
+Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
+    Route::get('/login', [App\Http\Controllers\Student\Auth\LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [App\Http\Controllers\Student\Auth\LoginController::class, 'login']);
+    Route::post('/logout', [App\Http\Controllers\Student\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('/register', [App\Http\Controllers\Student\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+    Route::post('/register', [App\Http\Controllers\Student\Auth\RegisterController::class, 'register']);
+    Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/courses', [App\Http\Controllers\Student\StudentController::class, 'courses'])->name('courses');
+    Route::get('/profile', [App\Http\Controllers\Student\StudentController::class, 'profile'])->name('profile');
+    Route::get('/settings', [App\Http\Controllers\Student\StudentController::class, 'settings'])->name('settings');
+    Route::post('/profile', [App\Http\Controllers\Student\StudentController::class, 'update'])->name('profile.update');
+});
+
 

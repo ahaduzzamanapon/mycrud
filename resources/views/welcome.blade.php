@@ -6,10 +6,11 @@
     <title>Turning Point - Job Preparation Platform</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: #f9f9f9;
+            background-color: #fdfdfd;
             color: #333;
         }
         .header {
@@ -18,11 +19,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         .header .logo {
             font-size: 28px;
-            font-weight: bold;
+            font-weight: 700;
             color: #e53935;
         }
         .header nav a {
@@ -31,6 +35,10 @@
             color: #555;
             font-weight: 500;
             font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .header nav a:hover {
+            color: #e53935;
         }
         .header .btn {
             background-color: #e53935;
@@ -39,21 +47,30 @@
             border-radius: 25px;
             text-decoration: none;
             font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .header .btn:hover {
+            background-color: #c62828;
         }
         .hero {
-            background-color: #fce4ec;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('images/2.jpg') }}');
+            background-size: cover;
+            background-position: center;
             text-align: center;
-            padding: 80px 20px;
+            padding: 120px 20px;
+            color: #fff;
         }
         .hero h1 {
-            font-size: 42px;
+            font-size: 52px;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #333;
         }
         .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #555;
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .hero .btn {
             background-color: #e53935;
@@ -63,6 +80,10 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .hero .btn:hover {
+            background-color: #c62828;
         }
         .courses {
             padding: 80px 40px;
@@ -70,39 +91,49 @@
         }
         .courses h2 {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
+            font-size: 38px;
+            font-weight: 600;
+            margin-bottom: 60px;
         }
         .course-categories {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
         }
         .category {
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 10px;
+            background-color: #fff;
+            border-radius: 15px;
             padding: 30px;
-            width: 200px;
+            width: 220px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         .category .icon {
             font-size: 48px;
-            color: #e53935;
+            line-height: 1;
             margin-bottom: 20px;
         }
         .category h3 {
             font-size: 20px;
+            font-weight: 600;
             margin-bottom: 10px;
         }
         .reviews {
             padding: 80px 40px;
+            background-color: #f9f9f9;
+            overflow: hidden; /* Fix for horizontal scrollbar */
         }
         .reviews h2 {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
+            font-size: 38px;
+            font-weight: 600;
+            margin-bottom: 60px;
         }
         .review-slider {
             max-width: 800px;
@@ -110,28 +141,45 @@
         }
         .review {
             text-align: center;
-            padding: 20px;
+            padding: 40px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .review img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .review .stars {
+            color: #ffc107;
+            margin-bottom: 15px;
         }
         .review p {
             font-style: italic;
             color: #555;
+            line-height: 1.8;
         }
         .review .author {
-            font-weight: bold;
-            margin-top: 10px;
+            font-weight: 600;
+            margin-top: 20px;
             color: #333;
         }
         .footer {
-            background-color: #333;
+            background-color: #222;
             color: #fff;
-            padding: 40px;
+            padding: 60px 40px;
         }
         .footer-content {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         .footer-section h4 {
             font-size: 18px;
+            font-weight: 600;
             margin-bottom: 20px;
         }
         .footer-section a {
@@ -139,10 +187,16 @@
             text-decoration: none;
             display: block;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: #e53935;
         }
         .copyright {
             text-align: center;
             margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
             color: #ccc;
         }
     </style>
@@ -160,13 +214,20 @@
             <a href="/batch-schedule">Batch Schedule</a>
             <a href="/blogs">Blogs</a>
         </nav>
-        <a href="/login" class="btn">Log in</a>
+        @if(Auth::guard('web')->check() || Auth::guard('student')->check())
+            <a href="#" class="btn" onclick="event.preventDefault(); document.getElementById('logout-form-welcome').submit();">Logout</a>
+            <form id="logout-form-welcome" action="{{ Auth::guard('web')->check() ? route('logout') : route('student.logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @else
+            <a href="{{ route('student.login') }}" class="btn">Student Portal</a>
+        @endif
     </header>
 
     <section class="hero">
         <h1>Turning Point Learning Platform</h1>
         <p>বিসিএস, ব্যাংক ও সরকারি চাকরির প্রস্তুতির জন্য বাংলাদেশের প্রথম অনলাইন ও অফলাইন প্ল্যাটফর্ম।</p>
-        <a href="/register" class="btn">শেখা শুরু করুন</a>
+        <a href="{{ route('student.register') }}" class="btn">Get Started</a>
     </section>
 
     <section class="courses">
@@ -199,13 +260,21 @@
         <h2>Student's Review</h2>
         <div class="swiper-container review-slider">
             <div class="swiper-wrapper">
-                <div class="swiper-slide review">
-                    <p>"Turning Point is the Pioneer and the most effective coaching centre for upgrading any job seekers career..."</p>
-                    <div class="author">- Mahmood Ibn Bhuiyan</div>
+                <div class="swiper-slide">
+                    <div class="review">
+                        <img src="https://picsum.photos/100/100?random=1" alt="Reviewer">
+                        <div class="stars">★★★★★</div>
+                        <p>"Turning Point is the Pioneer and the most effective coaching centre for upgrading any job seekers career..."</p>
+                        <div class="author">- Mahmood Ibn Bhuiyan</div>
+                    </div>
                 </div>
-                <div class="swiper-slide review">
-                    <p>"লক্ষ্য পূরণ করার জার্নিটা শুরু হয় ২০১৩ সালে, ঢাকায় যাই BCS Coaching করার জন্য, Exam দেই But Output Zero..."</p>
-                    <div class="author">- Popy Talpatra</div>
+                <div class="swiper-slide">
+                    <div class="review">
+                        <img src="https://picsum.photos/100/100?random=2" alt="Reviewer">
+                        <div class="stars">★★★★★</div>
+                        <p>"লক্ষ্য পূরণ করার জার্নিটা শুরু হয় ২০১৩ সালে, ঢাকায় যাই BCS Coaching করার জন্য, Exam দেই But Output Zero..."</p>
+                        <div class="author">- Popy Talpatra</div>
+                    </div>
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -241,6 +310,7 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.review-slider', {
+            loop: true,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
