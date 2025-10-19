@@ -143,11 +143,35 @@
         <span class="item-name">Exam Management</span>
         <i class="right-icon im im-icon-Arrow-Right"></i>
     </a>
-    <ul class="sub-nav collapse {!! Request::is('admin/mcqs*') ? 'show' : '' !!}" id="exam_mgmt_menu" data-bs-parent="#sidebar-menu">
+    <ul class="sub-nav collapse {!! (Request::is('admin/mcqs*') || Request::is('admin/subjects*') || Request::is('admin/question_papers*') || Request::is('admin/exams*')) ? 'show' : '' !!}" id="exam_mgmt_menu" data-bs-parent="#sidebar-menu">
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/exams*') ? 'active' : '' !!}" href="{{ route('admin.exams.index') }}">
+                <i class="icon im im-icon-Diploma"></i>
+                <span class="item-name">Exams</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/question_papers*') ? 'active' : '' !!}" href="{{ route('admin.question_papers.index') }}">
+                <i class="icon im im-icon-Align-Justify"></i>
+                <span class="item-name">Question Paper List</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/subjects*') ? 'active' : '' !!}" href="{{ route('admin.subjects.index') }}">
                 <i class="icon im im-icon-Book-Open"></i>
                 <span class="item-name">Subjects</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/question_papers/create') ? 'active' : '' !!}" href="{{ route('admin.question_papers.create') }}">
+                <i class="icon im im-icon-Add-File"></i>
+                <span class="item-name">Create Question Paper</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/question_papers/generate') ? 'active' : '' !!}" href="{{ route('admin.question_papers.generate_form') }}">
+                <i class="icon im im-icon-Gear"></i>
+                <span class="item-name">Generate Question Paper</span>
             </a>
         </li>
         <li class="nav-item">

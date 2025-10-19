@@ -24,4 +24,11 @@ class Question extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function questionPapers()
+    {
+        return $this->belongsToMany(QuestionPaper::class, 'question_paper_question')
+                    ->withPivot('marks')
+                    ->withTimestamps();
+    }
 }

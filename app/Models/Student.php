@@ -26,4 +26,9 @@ class Student extends Authenticatable
     {
         return $this->belongsToMany(Batch::class, 'batch_student');
     }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class, 'exam_student');
+    }
 }

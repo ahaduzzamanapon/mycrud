@@ -102,6 +102,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::match(['get', 'post'], 'enrolled-students', [App\Http\Controllers\Admin\StudentListController::class, 'enrolledStudents'])->name('students.enrolled_list');
     Route::resource('mcqs', App\Http\Controllers\Admin\McqController::class);
     Route::resource('subjects', App\Http\Controllers\Admin\SubjectController::class);
+    Route::resource('question_papers', App\Http\Controllers\Admin\QuestionPaperController::class)->except(['show']);
+    Route::get('question_papers/generate', [App\Http\Controllers\Admin\QuestionPaperController::class, 'generateForm'])->name('question_papers.generate_form');
+    Route::post('question_papers/generate', [App\Http\Controllers\Admin\QuestionPaperController::class, 'generateStore'])->name('question_papers.generate_store');
+    Route::resource('exams', App\Http\Controllers\Admin\ExamController::class);
+    Route::get('exams/{exam}/results', [App\Http\Controllers\Admin\ExamController::class, 'showResults'])->name('exams.results');
+    Route::match(['get', 'post'], 'exam-results', [App\Http\Controllers\Admin\ExamResultController::class, 'index'])->name('exam_results.index');
+    Route::get('exam-results/{result}/answer-paper', [App\Http\Controllers\Admin\ExamResultController::class, 'showAnswerPaper'])->name('exam_results.answer_paper');
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
@@ -117,6 +124,10 @@ Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
     Route::post('/profile', [App\Http\Controllers\Student\StudentController::class, 'update'])->name('profile.update');
     Route::get('/enroll', [App\Http\Controllers\Student\EnrollmentController::class, 'create'])->name('enroll.create');
     Route::post('/enroll', [App\Http\Controllers\Student\EnrollmentController::class, 'store'])->name('enroll.store');
+    Route::get('/exams', [App\Http\Controllers\Student\ExamController::class, 'index'])->name('exams.index');
+    Route::get('/exams/{exam}/take', [App\Http\Controllers\Student\ExamController::class, 'startExam'])->name('exams.take');
+    Route::post('/exams/{exam}/submit', [App\Http\Controllers\Student\ExamController::class, 'submitExam'])->name('exams.submit');
+    Route::get('/exams/{exam}/result', [App\Http\Controllers\Student\ExamController::class, 'showResult'])->name('exams.result');
 });
 
 
