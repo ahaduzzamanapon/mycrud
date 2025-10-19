@@ -6,19 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AttendenceController;
 use App\Http\Controllers\SalesController;
 
-
-include 'demo.php';
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
 // login2, register2 pages
@@ -28,8 +15,37 @@ Route::view('register2', 'auth.register2');
 Route::view('register3', 'auth.register3');
 
 Route::get('/', function () {
-    return view('index');
-})->middleware('auth');
+    return view('welcome');
+});
+
+Route::get('/courses', function () {
+    return view('courses');
+});
+
+Route::get('/books', function () {
+    return view('books');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/branches', function () {
+    return view('branches');
+});
+
+Route::get('/batch-schedule', function () {
+    return view('batch-schedule');
+});
+
+Route::get('/blogs', function () {
+    return view('blogs');
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
 
 
 
