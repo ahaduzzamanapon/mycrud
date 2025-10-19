@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Enrollment;
+
 class StudentController extends Controller
 {
     public function __construct()
@@ -17,7 +19,11 @@ class StudentController extends Controller
 
     public function courses()
     {
-        return view('student.courses');
+        $enrollments = Enrollment::with(['course', 'batch'])
+            ->where('student_id', Auth::id())
+            ->get();
+            
+        return view('student.courses', compact('enrollments'));
     }
 
     public function profile()

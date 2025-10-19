@@ -1,10 +1,10 @@
 <?php
 
-namespace Database\seeders;
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,12 +15,17 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        // Create the main admin user
         User::create([
             'name'  => 'Admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
+            'user_type' => 'admin',
         ]);
-        $this->command->info('User account created with following details: admin@admin.com, password');
+
+        // Create a few employee users
+        User::factory()->employee()->count(5)->create();
+
+        $this->command->info('Admin and employee accounts created.');
     }
 }

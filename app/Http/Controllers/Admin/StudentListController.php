@@ -105,4 +105,30 @@ class StudentListController extends Controller
 
         return Response::stream($callback, 200, headers: $headers);
     }
+
+    public function enrolledStudents(Request $request)
+    {
+        $courses = Course::all();
+        $batches = Batch::all();
+
+        $query = Student::query()->whereHas('batches'); // Only get students who are in at least one batch
+
+        if ($request->filled('batch_id')) {
+            $query->whereHas('batches', function ($q) use ($request) {
+                $q->where('id', $request->batch_id);
+            });
+        } elseif ($request->filled('course_id')) {
+            $query->whereHas('batches.course', function ($q) use ($request) {
+                $q->where('id', $request->course_id);
+            });
+        }
+
+        $students = $query->with('batches.course')->get();
+
+        if ($request->has('export')) {
+            return $this->exportCsv($students); // Reuse the existing export function
+        }
+
+        return view('admin.students.enrolled_list', compact('students', 'courses', 'batches'));
+    }
 }

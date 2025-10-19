@@ -91,16 +91,28 @@
 
 {{-- Student Management --}}
 <li class="nav-item">
-    <a class="nav-link {!! (Request::is('admin/courses*') || Request::is('admin/batches*') || Request::is('admin/students*') || Request::is('admin/reports/students')) ? 'active' : '' !!}" data-bs-toggle="collapse" href="#student_mgmt_menu" role="button" aria-expanded="false" aria-controls="student_mgmt_menu">
+    <a class="nav-link {!! (Request::is('admin/courses*') || Request::is('admin/batches*') || Request::is('admin/students*') || Request::is('admin/reports/students') || Request::is('admin/enrollments*')) ? 'active' : '' !!}" data-bs-toggle="collapse" href="#student_mgmt_menu" role="button" aria-expanded="false" aria-controls="student_mgmt_menu">
         <i class="icon im im-icon-Student-MaleFemale"></i>
         <span class="item-name">Student Management</span>
         <i class="right-icon im im-icon-Arrow-Right"></i>
     </a>
-    <ul class="sub-nav collapse {!! (Request::is('admin/courses*') || Request::is('admin/batches*') || Request::is('admin/students*') || Request::is('admin/reports/students')) ? 'show' : '' !!}" id="student_mgmt_menu" data-bs-parent="#sidebar-menu">
+    <ul class="sub-nav collapse {!! (Request::is('admin/courses*') || Request::is('admin/batches*') || Request::is('admin/students*') || Request::is('admin/reports/students') || Request::is('admin/enrollments*')) ? 'show' : '' !!}" id="student_mgmt_menu" data-bs-parent="#sidebar-menu">
         <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/students*') ? 'active' : '' !!}" href="{{ route('admin.students.index') }}">
                 <i class="icon im im-icon-Business-Mens"></i>
                 <span class="item-name">Student List</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/enrolled-students') ? 'active' : '' !!}" href="{{ route('admin.students.enrolled_list') }}">
+                <i class="icon im im-icon-Conference"></i>
+                <span class="item-name">Enrolled Students</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/enrollments*') ? 'active' : '' !!}" href="{{ route('admin.enrollments.index') }}">
+                <i class="icon im im-icon-Yes"></i>
+                <span class="item-name">Enrollment Requests</span>
             </a>
         </li>
         <li class="nav-item">
@@ -126,12 +138,12 @@
 {{-- Settings --}}
 @if(can('settings'))
 <li class="nav-item">
-    <a class="nav-link {!! (Request::is('siteSettings*') || Request::is('designations*') ? 'active' : '' ) !!}" data-bs-toggle="collapse" href="#settings_menu" role="button" aria-expanded="false" aria-controls="settings_menu">
+    <a class="nav-link {!! (Request::is('siteSettings*') || Request::is('designations*') || Request::is('admin/payment_methods*')) ? 'active' : '' !!}" data-bs-toggle="collapse" href="#settings_menu" role="button" aria-expanded="false" aria-controls="settings_menu">
         <i class="icon im im-icon-Gear"></i>
         <span class="item-name">Settings</span>
         <i class="right-icon im im-icon-Arrow-Right"></i>
     </a>
-    <ul class="sub-nav collapse {!! (Request::is('siteSettings*') || Request::is('designations*') || Request::is('termAndConditions*') || Request::is('companies*') || Request::is('locations*') || Request::is('accountLedgers*') || Request::is('customers*') || Request::is('suppliers*') || Request::is('paymentMethods*') ? 'show' : '' ) !!}" id="settings_menu" data-bs-parent="#sidebar-menu">
+    <ul class="sub-nav collapse {!! (Request::is('siteSettings*') || Request::is('designations*') || Request::is('termAndConditions*') || Request::is('companies*') || Request::is('locations*') || Request::is('accountLedgers*') || Request::is('customers*') || Request::is('suppliers*') || Request::is('admin/payment_methods*')) ? 'show' : '' !!}" id="settings_menu" data-bs-parent="#sidebar-menu">
         @if(can('site_settings'))
         <li class="nav-item">
             <a class="nav-link {!! Request::is('siteSettings*') ? 'active' : '' !!}" href="{{ route('siteSettings.index') }}">
@@ -150,6 +162,12 @@
             </a>
         </li>
         @endif
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/payment_methods*') ? 'active' : '' !!}" href="{{ route('admin.payment_methods.index') }}">
+                <i class="icon im im-icon-Credit-Card"></i>
+                <span class="item-name">Payment Methods</span>
+            </a>
+        </li>
         {{-- Add other settings items here --}}
     </ul>
 </li>

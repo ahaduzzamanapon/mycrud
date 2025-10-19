@@ -95,6 +95,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::post('students/{student}/assign-batches', [App\Http\Controllers\Admin\StudentListController::class, 'assignBatches'])->name('students.assign_batches');
     Route::get('reports/students', [App\Http\Controllers\Admin\StudentListController::class, 'report'])->name('reports.students');
     Route::post('reports/students', [App\Http\Controllers\Admin\StudentListController::class, 'report']);
+    Route::resource('payment_methods', App\Http\Controllers\Admin\PaymentMethodController::class);
+    Route::get('enrollments', [App\Http\Controllers\Admin\EnrollmentController::class, 'index'])->name('enrollments.index');
+    Route::post('enrollments/{enrollment}/approve', [App\Http\Controllers\Admin\EnrollmentController::class, 'approve'])->name('enrollments.approve');
+    Route::post('enrollments/{enrollment}/reject', [App\Http\Controllers\Admin\EnrollmentController::class, 'reject'])->name('enrollments.reject');
+    Route::match(['get', 'post'], 'enrolled-students', [App\Http\Controllers\Admin\StudentListController::class, 'enrolledStudents'])->name('students.enrolled_list');
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
@@ -108,6 +113,8 @@ Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
     Route::get('/profile', [App\Http\Controllers\Student\StudentController::class, 'profile'])->name('profile');
     Route::get('/settings', [App\Http\Controllers\Student\StudentController::class, 'settings'])->name('settings');
     Route::post('/profile', [App\Http\Controllers\Student\StudentController::class, 'update'])->name('profile.update');
+    Route::get('/enroll', [App\Http\Controllers\Student\EnrollmentController::class, 'create'])->name('enroll.create');
+    Route::post('/enroll', [App\Http\Controllers\Student\EnrollmentController::class, 'store'])->name('enroll.store');
 });
 
 
