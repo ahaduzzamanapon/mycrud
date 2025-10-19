@@ -130,7 +130,30 @@
         <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/reports/students') ? 'active' : '' !!}" href="{{ route('admin.reports.students') }}">
                 <i class="icon im im-icon-File-Chart"></i>
-                <span class="item-name">Admission Report</span>
+                <span class="item-name">Student Report</span>
+            </a>
+        </li>
+    </ul>
+</li>
+
+{{-- Exam Management --}}
+<li class="nav-item">
+    <a class="nav-link {!! Request::is('admin/mcqs*') ? 'active' : '' !!}" data-bs-toggle="collapse" href="#exam_mgmt_menu" role="button" aria-expanded="false" aria-controls="exam_mgmt_menu">
+        <i class="icon im im-icon-File-Edit"></i>
+        <span class="item-name">Exam Management</span>
+        <i class="right-icon im im-icon-Arrow-Right"></i>
+    </a>
+    <ul class="sub-nav collapse {!! Request::is('admin/mcqs*') ? 'show' : '' !!}" id="exam_mgmt_menu" data-bs-parent="#sidebar-menu">
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/subjects*') ? 'active' : '' !!}" href="{{ route('admin.subjects.index') }}">
+                <i class="icon im im-icon-Book-Open"></i>
+                <span class="item-name">Subjects</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/mcqs*') ? 'active' : '' !!}" href="{{ route('admin.mcqs.index') }}">
+                <i class="icon im im-icon-File-Favorite"></i>
+                <span class="item-name">MCQs</span>
             </a>
         </li>
     </ul>

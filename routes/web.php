@@ -100,6 +100,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::post('enrollments/{enrollment}/approve', [App\Http\Controllers\Admin\EnrollmentController::class, 'approve'])->name('enrollments.approve');
     Route::post('enrollments/{enrollment}/reject', [App\Http\Controllers\Admin\EnrollmentController::class, 'reject'])->name('enrollments.reject');
     Route::match(['get', 'post'], 'enrolled-students', [App\Http\Controllers\Admin\StudentListController::class, 'enrolledStudents'])->name('students.enrolled_list');
+    Route::resource('mcqs', App\Http\Controllers\Admin\McqController::class);
+    Route::resource('subjects', App\Http\Controllers\Admin\SubjectController::class);
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){

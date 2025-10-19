@@ -18,10 +18,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CourseAndBatchSeeder::class,
             StudentSeeder::class,
+            SubjectSeeder::class,
             LedgerSeeder::class,
             TransactionSeeder::class,
             AttendanceSeeder::class,
             PaymentMethodSeeder::class,
+            McqSeeder::class,
         ]);
     }
 }
