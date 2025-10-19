@@ -8,6 +8,7 @@ use App\Models\Result;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\StudentAnswer;
 
 class ExamController extends Controller
 {
@@ -140,6 +141,13 @@ class ExamController extends Controller
     {
         $student = Auth::guard('student')->user();
         $result = Result::where('exam_id', $exam->id)->where('student_id', $student->id)->firstOrFail();
-        return view('student.exams.result', compact('exam', 'result'));
+
+        $exam->load(['questionPaper.questions.options']);
+        $studentAnswers = StudentAnswer::where('exam_id', $exam->id)
+                                    ->where('student_id', $student->id)
+                                    ->get()
+                                    ->keyBy('question_id');
+
+        return view('student.exams.result', compact('exam', 'result', 'studentAnswers'));
     }
 }

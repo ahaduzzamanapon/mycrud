@@ -34,10 +34,13 @@
                                 @foreach($question->options as $option)
                                     @php
                                         $isSubmitted = false;
-                                        if ($question->type == 'single') {
-                                            $isSubmitted = ($studentAnswersMap[$question->id]->option_id == $option->id);
-                                        } else {
-                                            $isSubmitted = in_array($option->id, $studentAnswersMap[$question->id]->option_ids ?? []);
+                                        if ($studentAnswer) {
+                                            if ($question->type == 'single') {
+                                                $isSubmitted = ($studentAnswer->option_id == $option->id);
+                                            } else {
+                                                $submittedOptionIds = (array) $studentAnswer->option_ids;
+                                                $isSubmitted = in_array($option->id, $submittedOptionIds);
+                                            }
                                         }
                                         $isCorrectOption = $option->is_correct;
 
@@ -64,11 +67,13 @@
                             <p><strong>Your Submitted Answer(s):</strong>
                                 @php
                                     $submittedOptionTexts = [];
-                                    if ($question->type == 'single' && $studentAnswersMap[$question->id]->option_id) {
-                                        $submittedOptionTexts[] = $question->options->where('id', $studentAnswersMap[$question->id]->option_id)->first()->option_text ?? 'N/A';
-                                    } elseif ($question->type == 'multiple' && $studentAnswersMap[$question->id]->option_ids) {
-                                        foreach ($studentAnswersMap[$question->id]->option_ids as $optId) {
-                                            $submittedOptionTexts[] = $question->options->where('id', $optId)->first()->option_text ?? 'N/A';
+                                    if ($studentAnswer) {
+                                        if ($question->type == 'single' && $studentAnswer->option_id) {
+                                            $submittedOptionTexts[] = $question->options->where('id', $studentAnswer->option_id)->first()->option_text ?? 'N/A';
+                                        } elseif ($question->type == 'multiple' && $studentAnswer->option_ids) {
+                                            foreach ((array) $studentAnswer->option_ids as $optId) {
+                                                $submittedOptionTexts[] = $question->options->where('id', $optId)->first()->option_text ?? 'N/A';
+                                            }
                                         }
                                     }
                                 @endphp

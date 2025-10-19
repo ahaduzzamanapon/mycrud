@@ -40,7 +40,7 @@ class ExamResultController extends Controller
 
     public function showAnswerPaper(Result $result)
     {
-        $result->load(['exam.questionPaper.questions.options', 'student', 'studentAnswers']);
+        $result->load(['exam.questionPaper.questions.options', 'student']);
 
         // Map student answers to questions for easier display
         $studentAnswersMap = $result->studentAnswers->keyBy('question_id');

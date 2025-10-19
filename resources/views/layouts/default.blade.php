@@ -30,7 +30,7 @@
     <!-- Aos Animation Css -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/aos/dist/aos.css') }}" />
 
-    <!-- Hope Ui Design System Css -->
+    <!-- Turning point Design System Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/hope-ui.min.css?v=5.0.0') }}" />
 
     <!-- Custom Css -->
@@ -107,7 +107,7 @@
             <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
                 <div class="container-fluid navbar-inner">
                     <a href="../dashboard/index.html" class="navbar-brand">
-                        <h4 class="logo-title">Hope UI</h4>
+                        <h4 class="logo-title">Turning point</h4>
                     </a>
                     <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                         <i class="icon">

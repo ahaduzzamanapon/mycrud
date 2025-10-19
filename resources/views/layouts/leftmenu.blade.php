@@ -175,6 +175,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/exam-results*') ? 'active' : '' !!}" href="{{ route('admin.exam_results.index') }}">
+                <i class="icon im im-icon-File-Chart"></i>
+                <span class="item-name">Exam Results</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/mcqs*') ? 'active' : '' !!}" href="{{ route('admin.mcqs.index') }}">
                 <i class="icon im im-icon-File-Favorite"></i>
                 <span class="item-name">MCQs</span>
