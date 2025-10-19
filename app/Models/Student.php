@@ -17,4 +17,13 @@ class Student extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function attendances()
+    {
+        return $this->morphMany(Attendance::class, 'attendable');
+    }
+
+    public function batches()
+    {
+        return $this->belongsToMany(Batch::class, 'batch_student');
+    }
 }

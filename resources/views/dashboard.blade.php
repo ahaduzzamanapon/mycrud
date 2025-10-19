@@ -1,40 +1,18 @@
 @extends('layouts.default')
-{{-- Page title --}}
-@section('title')
-    Dashboard @parent
-@stop
-{{-- page level styles --}}
-@section('header_styles')
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
-@stop
+
 @section('content')
-    <section class="content-header">
-        <h1>
-            Dashboard
-            <small>Control panel</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li class="active">
-                <a href="{{ url('/') }}">
-                    <i class="fa fa-dashboard"></i> Dashboard
-                </a>
-            </li>
-        </ol>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-default">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Welcome</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        </div>
-                    </div>
-                   
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Admin Dashboard</h4>
                 </div>
             </div>
+            <div class="card-body">
+                <p>Welcome to the admin panel. Please use the sidebar to navigate to the different sections.</p>
+            </div>
         </div>
-    </section>
-@stop
-
+    </div>
+</div>
+@endsection

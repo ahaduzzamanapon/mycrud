@@ -77,6 +77,26 @@ Route::get('remove_all_files', 'JoshController@remove_all_files');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('{name?}', 'JoshController@showView');
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web'], function(){
+    Route::resource('employees', App\Http\Controllers\Admin\EmployeeController::class);
+    Route::get('attendance/create', [App\Http\Controllers\Admin\AttendanceController::class, 'create'])->name('attendance.create');
+    Route::post('attendance', [App\Http\Controllers\Admin\AttendanceController::class, 'store'])->name('attendance.store');
+    Route::get('attendance/report', [App\Http\Controllers\Admin\AttendanceController::class, 'report'])->name('attendance.report');
+    Route::post('attendance/report', [App\Http\Controllers\Admin\AttendanceController::class, 'report']);
+    Route::resource('ledgers', App\Http\Controllers\Admin\LedgerController::class);
+    Route::get('transactions/create', [App\Http\Controllers\Admin\TransactionController::class, 'create'])->name('transactions.create');
+    Route::post('transactions', [App\Http\Controllers\Admin\TransactionController::class, 'store'])->name('transactions.store');
+    Route::get('reports/accounts', [App\Http\Controllers\Admin\AccountReportController::class, 'report'])->name('reports.accounts');
+    Route::post('reports/accounts', [App\Http\Controllers\Admin\AccountReportController::class, 'report']);
+    Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
+    Route::resource('batches', App\Http\Controllers\Admin\BatchController::class);
+    Route::get('students', [App\Http\Controllers\Admin\StudentListController::class, 'index'])->name('students.index');
+    Route::get('students/{student}/manage-batches', [App\Http\Controllers\Admin\StudentListController::class, 'manage'])->name('students.manage_batches');
+    Route::post('students/{student}/assign-batches', [App\Http\Controllers\Admin\StudentListController::class, 'assignBatches'])->name('students.assign_batches');
+    Route::get('reports/students', [App\Http\Controllers\Admin\StudentListController::class, 'report'])->name('reports.students');
+    Route::post('reports/students', [App\Http\Controllers\Admin\StudentListController::class, 'report']);
+});
+
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
     Route::get('/login', [App\Http\Controllers\Student\Auth\LoginController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [App\Http\Controllers\Student\Auth\LoginController::class, 'login']);

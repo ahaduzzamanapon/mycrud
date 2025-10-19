@@ -84,14 +84,7 @@
                                             </div>
 
                                         </form>
-                                        <div class="d-none">New Member?
-                                            <a href="{{ route('register')}}">
-                                                <strong>Sign Up</strong>
-                                            </a>
-                                            | <small><a href="{{ route('password.request') }}"
-                                                    class="text-decoration-none text-muted">Forgot your
-                                                    password?</a></small>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
