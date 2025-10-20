@@ -74,7 +74,7 @@
         <div class="sidebar-header d-flex align-items-center justify-content-start">
             <a href="{{ url('/dashboard') }}" class="navbar-brand">
                 <div class="logo-main">
-
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 40px;" class="img-fluid">
                 </div>
                 <h4 class="logo-title">{{ !empty($setting) ? $setting->name : 'Title' }}</h4>
             </a>
@@ -107,7 +107,7 @@
             <nav class="nav navbar navbar-expand-xl navbar-light iq-navbar">
                 <div class="container-fluid navbar-inner">
                     <a href="../dashboard/index.html" class="navbar-brand">
-                        <h4 class="logo-title">Turning point</h4>
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 30px;" class="img-fluid">
                     </a>
                     <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                         <i class="icon">
