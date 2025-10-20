@@ -1,9 +1,21 @@
+
+    <!-- Bootstrap CSS -->
+    
+    
+    
+    
+    
+    
+
+
+    
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turning Point - Job Preparation Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -27,6 +39,7 @@
             color: var(--text-color);
             line-height: 1.6;
         }
+    
 
         section {
             padding: 80px 0;
@@ -66,6 +79,8 @@
             font-weight: 500;
             font-size: 16px;
             transition: color 0.3s ease;
+            cursor: pointer;
+            color: inherit !important;
         }
         .header nav a:hover {
             color: var(--primary-color);
@@ -119,14 +134,18 @@
         }
 
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ asset('images/2.jpg') }}');
+            background-image: linear-gradient(45deg, rgba(105, 101, 101, 0.8), rgba(208, 208, 208, 0.7)), url('{{ asset('images/2.jpg') }}');
             background-size: cover;
             background-position: center;
             text-align: center;
             padding: 150px 20px;
             color: #fff;
             position: relative;
-            animation: heroFadeIn 1s ease-out;
+            animation: heroFadeIn 1s ease-out, zoomIn 20s infinite alternate;
+        }
+        @keyframes zoomIn {
+            from { background-size: 100% 100%; }
+            to { background-size: 110% 110%; }
         }
         @keyframes heroFadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -148,10 +167,17 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         .hero .btn {
+            background-color: var(--primary-color);
             padding: 18px 40px;
             border-radius: 30px;
             font-size: 1.2rem;
             font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .btn:hover {
+            background-color: #7a0c0cff;
+            color: #fff;
         }
 
         .section-title {
@@ -173,6 +199,7 @@
         }
 
         .why-choose-us .card {
+            background-color: #fff;
             border: none;
             border-radius: 15px;
             box-shadow: var(--shadow-medium);
@@ -266,6 +293,51 @@
         .upcoming-batches .btn:hover {
             background-color: #c62828;
             border-color: #c62828;
+        }
+
+        .featured-on .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .featured-on .logos img {
+            height: 40px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .featured-on .logos img:hover {
+            opacity: 1;
+        }
+
+        .counter-section {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 60px 0;
+        }
+
+        .counter {
+            padding: 20px;
+        }
+
+        .counter .fa-3x {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .count-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .count-text {
+            font-size: 1.2rem;
+            font-weight: 500;
         }
 
         .reviews {
@@ -492,32 +564,62 @@
     <section class="why-choose-us bg-gray">
         <div class="container">
             <h2 class="section-title">Why Choose Us?</h2>
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 p-4 shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-chalkboard-teacher fa-3x text-primary mb-3"></i>
-                            <h5 class="card-title">Expert Instructors</h5>
-                            <p class="card-text">Learn from industry veterans and experienced educators.</p>
+            <div class="col-md-12">
+                <div class="row text-center">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 p-4 shadow-sm">
+                            <div class="card-body">
+                                <i class="fas fa-chalkboard-teacher fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Expert Instructors</h5>
+                                <p class="card-text">Learn from industry veterans and experienced educators.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 p-4 shadow-sm">
+                            <div class="card-body">
+                                <i class="fas fa-book-reader fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Comprehensive Curriculum</h5>
+                                <p class="card-text">Up-to-date materials covering all exam topics.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 p-4 shadow-sm">
+                            <div class="card-body">
+                                <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Dedicated Support</h5>
+                                <p class="card-text">24/7 support to guide you through your journey.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 p-4 shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-book-reader fa-3x text-primary mb-3"></i>
-                            <h5 class="card-title">Comprehensive Curriculum</h5>
-                            <p class="card-text">Up-to-date materials covering all exam topics.</p>
-                        </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="counter-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="counter">
+                        <i class="fas fa-users fa-3x"></i>
+                        <h2 class="timer count-title count-number" data-to="10000" data-speed="2000"></h2>
+                        <p class="count-text ">Happy Students</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 p-4 shadow-sm">
-                        <div class="card-body">
-                            <i class="fas fa-headset fa-3x text-primary mb-3"></i>
-                            <h5 class="card-title">Dedicated Support</h5>
-                            <p class="card-text">24/7 support to guide you through your journey.</p>
-                        </div>
+                <div class="col-md-4 text-center">
+                    <div class="counter">
+                        <i class="fas fa-book fa-3x"></i>
+                        <h2 class="timer count-title count-number" data-to="50" data-speed="2000"></h2>
+                        <p class="count-text ">Courses</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="counter">
+                        <i class="fas fa-award fa-3x"></i>
+                        <h2 class="timer count-title count-number" data-to="5000" data-speed="2000"></h2>
+                        <p class="count-text ">Successful Placements</p>
                     </div>
                 </div>
             </div>
@@ -527,27 +629,18 @@
     <section class="courses">
         <div class="container">
             <h2 class="section-title">Our Popular Courses</h2>
+            @php
+                use App\Models\Course;
+                $courses = Course::latest()->take(5)->get();
+                $icons = ['fa-university', 'fa-graduation-cap', 'fa-school', 'fa-globe', 'fa-landmark'];
+            @endphp
             <div class="course-categories">
-                <div class="category">
-                    <div class="icon"><i class="fas fa-university"></i></div>
-                    <h3>Bank Job Preparation</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>MBA Admission</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-school"></i></div>
-                    <h3>PRIMARY & NTRCA</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-globe"></i></div>
-                    <h3>E-Language</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-landmark"></i></div>
-                    <h3>BCS Preparation</h3>
-                </div>
+                @foreach($courses as $key => $course)
+                    <div class="category">
+                        <div class="icon"><i class="fas {{ $icons[$key % count($icons)] }}"></i></div>
+                        <h3>{{ $course->name }}</h3>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -640,7 +733,11 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <script>
         var swiper = new Swiper('.review-slider', {
             loop: true,
@@ -679,6 +776,130 @@
         document.querySelectorAll('#mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileNav.classList.remove('active');
+            });
+        });
+
+        (function ($) {
+            $.fn.countTo = function (options) {
+                options = options || {};
+
+                return $(this).each(function () {
+                    // set options for current element
+                    var settings = $.extend({}, $.fn.countTo.defaults, {
+                        from: $(this).data('from'),
+                        to: $(this).data('to'),
+                        speed: $(this).data('speed'),
+                        refreshInterval: $(this).data('refresh-interval'),
+                        decimals: $(this).data('decimals')
+                    }, options);
+
+                    // how many times to update the value, and the value step for each update
+                    var loops = Math.ceil(settings.speed / settings.refreshInterval),
+                        increment = (settings.to - settings.from) / loops;
+
+                    // references & variables that will change with each update
+                    var self = this,
+                        $self = $(this),
+                        loopCount = 0,
+                        value = settings.from,
+                        data = $self.data('countTo') || {};
+
+                    $self.data('countTo', data);
+
+                    // if an existing interval can be found, clear it first
+                    if (data.interval) {
+                        clearInterval(data.interval);
+                    }
+                    data.interval = setInterval(updateTimer, settings.refreshInterval);
+
+                    // initialize the element with the starting value
+                    render(value);
+
+                    function updateTimer() {
+                        value += increment;
+                        loopCount++;
+
+                        render(value);
+
+                        if (typeof (settings.onUpdate) == 'function') {
+                            settings.onUpdate.call(self, value);
+                        }
+
+                        if (loopCount >= loops) {
+                            // remove the interval
+                            $self.removeData('countTo');
+                            clearInterval(data.interval);
+                            value = settings.to;
+
+                            if (typeof (settings.onComplete) == 'function') {
+                                settings.onComplete.call(self, value);
+                            }
+                        }
+                    }
+
+                    function render(value) {
+                        var formattedValue = settings.formatter.call(self, value, settings);
+                        $self.html(formattedValue);
+                    }
+                });
+            };
+
+            $.fn.countTo.defaults = {
+                from: 0,               // the number the element should start at
+                to: 0,                 // the number the element should end at
+                speed: 1000,           // how long it should take to count between the target numbers
+                refreshInterval: 100,  // how often the element should be updated
+                decimals: 0,           // the number of decimal places to show
+                formatter: formatter,  // handler for formatting the value before rendering
+                onUpdate: null,        // callback function for every update
+                onComplete: null       // callback function for when the animation is complete
+            };
+
+            function formatter(value, settings) {
+                return value.toFixed(settings.decimals);
+            }
+        }(jQuery));
+
+        jQuery(function ($) {
+            // custom formatting example
+            $('.count-number').data('countToOptions', {
+                formatter: function (value, options) {
+                    return value.toFixed(options.decimals).replace(/\B(?=(?:\d{3})+(?!\d))/g, ',');
+                }
+            });
+
+            // start all the timers
+            $('.timer').each(count);
+
+            function count(options) {
+                var $this = $(this);
+                options = $.extend({}, options || {}, $this.data('countToOptions') || {});
+                $this.countTo(options);
+            }
+
+            // Smooth scrolling
+            $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function (event) {
+                if (
+                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                    location.hostname == this.hostname
+                ) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        event.preventDefault();
+                        $('html, body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000, function () {
+                            var $target = $(target);
+                            $target.focus();
+                            if ($target.is(":focus")) {
+                                return false;
+                            }
+                            $target.attr('tabindex', '-1');
+                            $target.focus();
+                        });
+                    }
+                }
             });
         });
     </script>
