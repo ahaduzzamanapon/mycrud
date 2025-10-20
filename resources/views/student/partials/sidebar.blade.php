@@ -1,6 +1,5 @@
 <div class="sidebar-header">
     <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 40px;" class="img-fluid">
-    <strong>TP</strong>
 </div>
 
 <ul class="list-unstyled components">

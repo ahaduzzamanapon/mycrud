@@ -7,19 +7,19 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card-dashboard">
                 <h4>Courses Enrolled</h4>
-                <p class="display-4">5</p>
+                <p class="display-4">{{ $coursesEnrolled }}</p>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card-dashboard">
                 <h4>Assignments Due</h4>
-                <p class="display-4">2</p>
+                <p class="display-4">{{ $assignmentsDue }}</p>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card-dashboard">
                 <h4>Profile Completion</h4>
-                <p class="display-4">80%</p>
+                <p class="display-4">{{ round($profileCompletion) }}%</p>
             </div>
         </div>
     </div>
@@ -40,10 +40,10 @@
     const courseProgressChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Course A', 'Course B', 'Course C', 'Course D', 'Course E'],
+            labels: {!! json_encode($courseNames) !!},
             datasets: [{
                 label: 'Course Progress (%)',
-                data: [80, 50, 95, 70, 85],
+                data: {!! json_encode($courseProgress) !!},
                 backgroundColor: 'rgba(229, 57, 53, 0.7)',
                 borderColor: 'rgba(229, 57, 53, 1)',
                 borderWidth: 1

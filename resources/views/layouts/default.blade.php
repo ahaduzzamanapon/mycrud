@@ -47,6 +47,7 @@
 
     
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
       .btn:hover {
         color: #ffffff !important;
@@ -55,6 +56,78 @@
       }
       .nav-item {
           margin-top: 7px !important;
+      }
+      .card .icon-bg-primary {
+        background-color: #e5393533;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card .icon-bg-info {
+          background-color: #00d0ff33;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card .icon-bg-success {
+          background-color: #00d08433;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card .icon-bg-warning {
+          background-color: #ffc10733;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card .icon-bg-danger {
+        background-color: #dc354533;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card .icon-bg-purple {
+          background-color: #6f42c133;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card .icon-bg-dark {
+          background-color: #21252933;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+      .card .icon-bg-secondary {
+          background-color: #6c757d33;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
       }
     </style>
 
@@ -71,12 +144,11 @@
     </div>
 
     <aside class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all">
-        <div class="sidebar-header d-flex align-items-center justify-content-start">
+        <div class="sidebar-header d-flex align-items-center justify-content-start" style="place-self: anchor-center;">
             <a href="{{ url('/dashboard') }}" class="navbar-brand">
                 <div class="logo-main">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 40px;" class="img-fluid">
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 50px;" class="img-fluid">
                 </div>
-                <h4 class="logo-title">{{ !empty($setting) ? $setting->name : 'Title' }}</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
                 <i class="icon">

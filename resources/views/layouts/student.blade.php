@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         body {
@@ -95,6 +96,66 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.07);
             margin-top: 40px;
         }
+
+        .bottom-navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .bottom-navbar .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .bottom-navbar .nav-item.active,
+        .bottom-navbar .nav-item:hover {
+            color: #e53935;
+        }
+        .bottom-navbar .nav-item.active {
+            border-top: 2px solid #e53935;
+        }
+        .bottom-navbar .nav-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .bottom-navbar .nav-item span {
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .wrapper {
+                display: block;
+            }
+            #sidebar {
+                display: none;
+            }
+            #content {
+                width: 100%;
+                padding: 20px;
+                padding-bottom: 80px;
+            }
+            .card-dashboard {
+                padding: 20px;
+            }
+            .card-dashboard h4 {
+                font-size: 1rem;
+            }
+            .card-dashboard .display-4 {
+                font-size: 2.5rem;
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -110,6 +171,25 @@
             @yield('content')
         </main>
     </div>
+</div>
+
+<div class="bottom-navbar d-lg-none">
+    <a href="{{ route('student.dashboard') }}" class="nav-item {{ request()->routeIs('student.dashboard') ? 'active' : '' }}">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="{{ route('student.courses') }}" class="nav-item {{ request()->routeIs('student.courses') ? 'active' : '' }}">
+        <i class="fas fa-book"></i>
+        <span>Courses</span>
+    </a>
+    <a href="{{ route('student.exams.index') }}" class="nav-item {{ request()->routeIs('student.exams.index') ? 'active' : '' }}">
+        <i class="fas fa-file-text"></i>
+        <span>Exams</span>
+    </a>
+    <a href="{{ route('student.profile') }}" class="nav-item {{ request()->routeIs('student.profile') ? 'active' : '' }}">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+    </a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

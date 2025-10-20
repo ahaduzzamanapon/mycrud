@@ -43,14 +43,12 @@ Route::get('/blogs', function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
 
 
 
 // GUI crud builder routes
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', 'App\Http\Controllers\HomeController@index')->name('dashboard');
     Route::get('builder', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@builder')->name('io_generator_builder');
 
     Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@fieldTemplate')->name('io_field_template');

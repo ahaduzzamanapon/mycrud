@@ -139,7 +139,7 @@
 {{-- Exam Management --}}
 <li class="nav-item">
     <a class="nav-link {!! Request::is('admin/mcqs*') ? 'active' : '' !!}" data-bs-toggle="collapse" href="#exam_mgmt_menu" role="button" aria-expanded="false" aria-controls="exam_mgmt_menu">
-        <i class="icon im im-icon-File-Edit"></i>
+        <i class="icon im im-icon-Book"></i>
         <span class="item-name">Exam Management</span>
         <i class="right-icon im im-icon-Arrow-Right"></i>
     </a>
@@ -152,13 +152,13 @@
         </li>
         <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/question_papers*') ? 'active' : '' !!}" href="{{ route('admin.question_papers.index') }}">
-                <i class="icon im im-icon-Align-Justify"></i>
+                <i class="icon im im-icon-Add-File"></i>
                 <span class="item-name">Question Paper List</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {!! Request::is('admin/subjects*') ? 'active' : '' !!}" href="{{ route('admin.subjects.index') }}">
-                <i class="icon im im-icon-Book-Open"></i>
+                <i class="icon im im-icon-Books"></i>
                 <span class="item-name">Subjects</span>
             </a>
         </li>
