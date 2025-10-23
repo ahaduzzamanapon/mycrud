@@ -116,7 +116,6 @@ class SiteSettingController extends AppBaseController
      */
     public function update($id, UpdateSiteSettingRequest $request)
     {
-        /** @var SiteSetting $siteSetting */
         $siteSetting = SiteSetting::find($id);
 
         if (empty($siteSetting)) {
@@ -124,23 +123,20 @@ class SiteSettingController extends AppBaseController
 
             return redirect(route('siteSettings.index'));
         }
+
         $input = $request->all();
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
-            $folder = 'images/site';
-            $customName = 'item-'.time();
-            $input['logo'] = uploadFile($file, $folder, $customName);
-        }else{
-            unset($input['logo']);
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/site'), $filename);
+            $input['logo'] = 'images/site/' . $filename;
         }
-
-
 
         $siteSetting->fill($input);
         $siteSetting->save();
 
-        Flash::success('Site Settings updated successfully.');
+        Flash::success('Site Setting updated successfully.');
 
         return redirect(route('siteSettings.index'));
     }

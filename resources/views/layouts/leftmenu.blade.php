@@ -221,6 +221,12 @@
                 <span class="item-name">Payment Methods</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/promotions*') ? 'active' : '' !!}" href="{{ route('admin.promotions.index') }}">
+                <i class="icon im im-icon-Gift-Box"></i>
+                <span class="item-name">Promotions</span>
+            </a>
+        </li>
         {{-- Add other settings items here --}}
     </ul>
 </li>

@@ -42,6 +42,8 @@ Route::get('/blogs', function () {
     return view('blogs');
 });
 
+Route::get('promotion/{promotion}', [App\Http\Controllers\FrontendController::class, 'showPromotion'])->name('promotion.show');
+
 
 
 
@@ -107,6 +109,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::get('exams/{exam}/results', [App\Http\Controllers\Admin\ExamController::class, 'showResults'])->name('exams.results');
     Route::match(['get', 'post'], 'exam-results', [App\Http\Controllers\Admin\ExamResultController::class, 'index'])->name('exam_results.index');
     Route::get('exam-results/{result}/answer-paper', [App\Http\Controllers\Admin\ExamResultController::class, 'showAnswerPaper'])->name('exam_results.answer_paper');
+    Route::resource('promotions', App\Http\Controllers\Admin\PromotionController::class);
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){
