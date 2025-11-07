@@ -227,6 +227,48 @@
                 <span class="item-name">Promotions</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/expert_instructors*') ? 'active' : '' !!}" href="{{ route('admin.expert_instructors.index') }}">
+                <i class="icon im im-icon-Teacher"></i>
+                <span class="item-name">Expert Instructors</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/course_outlines*') ? 'active' : '' !!}" href="{{ route('admin.course_outlines.index') }}">
+                <i class="icon im im-icon-File-Favorite"></i>
+                <span class="item-name">Course Outlines</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/dedicated_supports*') ? 'active' : '' !!}" href="{{ route('admin.dedicated_supports.index') }}">
+                <i class="icon im im-icon-Headset"></i>
+                <span class="item-name">Dedicated Supports</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/about_links*') ? 'active' : '' !!}" href="{{ route('admin.about_links.index') }}">
+                <i class="icon im im-icon-Information"></i>
+                <span class="item-name">About Links</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/support_emails*') ? 'active' : '' !!}" href="{{ route('admin.support_emails.index') }}">
+                <i class="icon im im-icon-Mail"></i>
+                <span class="item-name">Support Emails</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/head_offices*') ? 'active' : '' !!}" href="{{ route('admin.head_offices.index') }}">
+                <i class="icon im im-icon-Home-3"></i>
+                <span class="item-name">Head Offices</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {!! Request::is('admin/corporate_offices*') ? 'active' : '' !!}" href="{{ route('admin.corporate_offices.index') }}">
+                <i class="icon im im-icon-Building"></i>
+                <span class="item-name">Corporate Offices</span>
+            </a>
+        </li>
         {{-- Add other settings items here --}}
     </ul>
 </li>

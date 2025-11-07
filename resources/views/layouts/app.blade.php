@@ -1,8 +1,3 @@
-<!-- Bootstrap CSS -->
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -30,7 +26,8 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+            
             margin: 0;
             background-color: var(--bg-light);
             color: var(--text-color);
@@ -73,12 +70,12 @@
         }
 
         .header nav a {
-            text-decoration: none;
-            color: var(--light-text-color);
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
+    text-decoration: none;
+    color: var(--light-text-color);
+    font-weight: 700;
+    font-size: 23px;
+    transition: color 0.3s ease;
+}
 
         .header nav a:hover {
             color: var(--primary-color);
@@ -155,7 +152,7 @@
         }
 
         .promotion-card img {
-            width: 100%;
+            width: 70%;
             height: auto;
         }
 
@@ -181,6 +178,7 @@
             display: inline-block;
             padding-left: 100%;
             animation: marquee 20s linear infinite;
+            font-size: 30px;
         }
 
         @keyframes marquee {
@@ -225,16 +223,17 @@
         }
 
         .why-choose-us .card-body {
-            padding: 30px;
+            padding: 40px;
         }
 
         .why-choose-us .card-title {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: var(--text-color);
         }
 
         .why-choose-us .card-text {
+            font-size: 1.1rem;
             color: var(--light-text-color);
         }
 
@@ -496,6 +495,26 @@
                 width: 100%;
             }
         }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #c62828;
+            border-color: #c62828;
+        }
+        .btn-primary:hover {
+            background-color: #b71c1c;
+            border-color: #b71c1c;
+        }
+
+        .text-primary {
+            color: #c62828!important;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -503,7 +522,7 @@
 
     <header class="header">
         <a href="/" class="logo">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="Turning Point Logo" style="height: 40px;">
+            <img src="{{ asset(settings('logo')) }}" alt="Turning Point Logo" style="height: 65px;">
         </a>
         <nav id="main-nav">
             <a href="/">Home</a>
@@ -547,30 +566,88 @@
             <a href="{{ route('student.login') }}">Student Portal</a>
         @endif
     </div>
+
     <main>
         @yield('content')
     </main>
-
+<style>
+    .footer-container {
+    margin: 10px 1px 10px 124px;
+    }
+    @media (max-width: 767px) {
+        .footer-container {
+            margin: 10px;
+        }
+    }
+</style>
     <footer class="footer">
-        <div class="container">
+        
+        <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>About</h4>
-                    <a href="/about">About Us</a>
-                    <a href="#">Career</a>
-                    <a href="/branches">Branches</a>
+                    <h4>Follow Us</h4>
+                    <style>
+                        .social-icons a {
+                            color: #ccc;
+                            transition: color 0.3s ease, transform 0.3s ease;
+                            background-color: transparent;
+                            padding: 10px;
+                            border-radius: 50%!important;
+                        }
+
+                        .social-icons a {
+                            color: #ccc;
+                            transition: color 0.3s ease, transform 0.3s ease;
+                            background-color: transparent;
+                            padding: 12px 10px 6px 10px;
+                            border-radius: 28%!important;
+                        }
+                        .social-icons a:hover {
+                            color: var(--primary-color);
+                            transform: translateY(-5px);
+                            background-color: #fff;
+                        }
+                        @media (max-width: 768px) {
+                            .social-icons {
+                                place-content: center;
+                                flex-wrap: wrap;
+                            }
+                        }
+                    </style>
+                    <div class="social-icons d-flex" style="gap: 15px;">
+                        <a href="https://www.facebook.com/turningandtargetpoint" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="https://www.youtube.com/channel/UC8hBhB9Kb0q4YR7WbqWwQw" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
+                        <a href="https://www.instagram.com/turningandtargetpoint/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/company/turning-point-job-aid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Support</h4>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
-                    <a href="#">Refund Policy</a>
+                    @forelse($supportEmails as $email)
+                        <a href="mailto:{{ $email->email }}"><i class="fas fa-envelope"></i> {{ $email->title }}</a>
+                    @empty
+                        <p>No support emails available.</p>
+                    @endforelse
                 </div>
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Dhaka, Bangladesh</p>
-                    <p>info@turningpoint.com</p>
-                    <p>01713 28 91 49</p>
+                <div class="footer-section" style="font-weight: bold;">
+                    <h4>Head Office</h4>
+                    @forelse($headOffices as $office)
+                    <div >
+                        <p> {{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
+                    </div>
+                    @empty
+                        <p>No head office information available.</p>
+                    @endforelse
+                </div>
+                <div class="footer-section" style="font-weight: bold;">
+                    <h4>Corporate Office</h4>
+                    @forelse($corporateOffices as $office)
+                    <div>
+                        <p>{{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
+                    </div>
+                    @empty
+                        <p>No corporate office information available.</p>
+                    @endforelse
                 </div>
             </div>
             <div class="copyright">
@@ -622,6 +699,6 @@
         });
     </script>
 
-
 </body>
+
 </html>

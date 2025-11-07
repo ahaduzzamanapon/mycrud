@@ -32,6 +32,22 @@ if (!function_exists('uploadFile')) {
     }
 }
 
+if (!function_exists('settings')) {
+    
+    function settings($key)
+    {
+        $setting = \App\Models\SiteSetting::first();
+        if ($setting) {
+            return $setting->$key;
+        }
+        return null;
+    }
+}
+
+
+
+
+
 if (!function_exists('can')) {
 
     function can($key)

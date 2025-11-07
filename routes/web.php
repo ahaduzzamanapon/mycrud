@@ -110,6 +110,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::match(['get', 'post'], 'exam-results', [App\Http\Controllers\Admin\ExamResultController::class, 'index'])->name('exam_results.index');
     Route::get('exam-results/{result}/answer-paper', [App\Http\Controllers\Admin\ExamResultController::class, 'showAnswerPaper'])->name('exam_results.answer_paper');
     Route::resource('promotions', App\Http\Controllers\Admin\PromotionController::class);
+    Route::resource('expert_instructors', App\Http\Controllers\Admin\ExpertInstructorController::class);
+    Route::resource('course_outlines', App\Http\Controllers\Admin\CourseOutlineController::class);
+    Route::resource('dedicated_supports', App\Http\Controllers\Admin\DedicatedSupportController::class);
+    Route::resource('about_links', App\Http\Controllers\Admin\AboutLinkController::class);
+    Route::resource('support_emails', App\Http\Controllers\Admin\SupportEmailController::class);
+    Route::resource('head_offices', App\Http\Controllers\Admin\HeadOfficeController::class);
+    Route::resource('corporate_offices', App\Http\Controllers\Admin\CorporateOfficeController::class);
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){

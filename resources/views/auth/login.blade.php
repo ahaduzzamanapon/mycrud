@@ -25,7 +25,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h2 class="text-center">
-                                            <span>SLOPE</span>
+                                            <span>Turning Point</span>
                                         </h2>
                                     </div>
                                 </div>
