@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-    <style>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/custom-cards.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/custom-course-details.css') }}">
+        <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         :root {
@@ -27,7 +31,7 @@
 
         body {
             font-family: 'Hind Siliguri', 'Poppins', sans-serif;
-            
+
             margin: 0;
             background-color: var(--bg-light);
             color: var(--text-color);
@@ -69,15 +73,15 @@
             gap: 30px;
         }
 
-        .header nav a {
-    text-decoration: none;
-    color: var(--light-text-color);
-    font-weight: 700;
-    font-size: 23px;
-    transition: color 0.3s ease;
-}
+        .header nav .nav-link {
+            text-decoration: none;
+            color: var(--light-text-color);
+            font-weight: 700;
+            font-size: 23px;
+            transition: color 0.3s ease;
+        }
 
-        .header nav a:hover {
+        .header nav .nav-link:hover {
             color: var(--primary-color);
         }
 
@@ -280,6 +284,16 @@
             font-weight: 600;
             margin-bottom: 10px;
             color: var(--text-color);
+        }
+
+        .category-button {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .category-button:hover {
+            text-decoration: none;
+            color: #fff;
+            transform: scale(1.1);
         }
 
         .upcoming-batches .card {
@@ -501,19 +515,42 @@
             background-color: #c62828;
             border-color: #c62828;
         }
+
         .btn-primary:hover {
             background-color: #b71c1c;
             border-color: #b71c1c;
         }
 
         .text-primary {
-            color: #c62828!important;
+            color: #c62828 !important;
         }
+
         a {
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: none;
+        }
+
+
+        .btn-primary:not(:disabled):not(.disabled).active,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .show>.btn-primary.dropdown-toggle {
+            color: #fff;
+            background-color: #c62828;
+            border-color: #c62828;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled).active:focus,
+        .btn-primary:not(:disabled):not(.disabled):active:focus,
+        .show>.btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 .2rem #c62828;
+        }
+
+        .navbar-nav .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; 
         }
     </style>
 </head>
@@ -524,14 +561,27 @@
         <a href="/" class="logo">
             <img src="{{ asset(settings('logo')) }}" alt="Turning Point Logo" style="height: 65px;">
         </a>
-        <nav id="main-nav">
-            <a href="/">Home</a>
-            <a href="/courses">Courses</a>
-            <a href="/books">Books</a>
-            <a href="/about">About Us</a>
-            <a href="/branches">Branches</a>
-            <a href="/batch-schedule">Batch Schedule</a>
-            <a href="/blogs">Blogs</a>
+        <nav id="main-nav" class="navbar navbar-expand-lg">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Courses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @foreach($allCourses as $course)
+                                <a class="dropdown-item" href="{{ route('frontend.courses.show_detail', $course->id) }}">{{ $course->title }}</a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/books">Books</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/branches">Branches</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/batch-schedule">Batch Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/blogs">Blogs</a></li>
+                </ul>
+            </div>
         </nav>
         @if(Auth::guard('web')->check() || Auth::guard('student')->check())
             <a href="#" class="btn"
@@ -570,18 +620,19 @@
     <main>
         @yield('content')
     </main>
-<style>
-    .footer-container {
-    margin: 10px 1px 10px 124px;
-    }
-    @media (max-width: 767px) {
+    <style>
         .footer-container {
-            margin: 10px;
+            margin: 10px 1px 10px 124px;
         }
-    }
-</style>
+
+        @media (max-width: 767px) {
+            .footer-container {
+                margin: 10px;
+            }
+        }
+    </style>
     <footer class="footer">
-        
+
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-section">
@@ -592,7 +643,7 @@
                             transition: color 0.3s ease, transform 0.3s ease;
                             background-color: transparent;
                             padding: 10px;
-                            border-radius: 50%!important;
+                            border-radius: 50% !important;
                         }
 
                         .social-icons a {
@@ -600,13 +651,15 @@
                             transition: color 0.3s ease, transform 0.3s ease;
                             background-color: transparent;
                             padding: 12px 10px 6px 10px;
-                            border-radius: 28%!important;
+                            border-radius: 28% !important;
                         }
+
                         .social-icons a:hover {
                             color: var(--primary-color);
                             transform: translateY(-5px);
                             background-color: #fff;
                         }
+
                         @media (max-width: 768px) {
                             .social-icons {
                                 place-content: center;
@@ -615,10 +668,14 @@
                         }
                     </style>
                     <div class="social-icons d-flex" style="gap: 15px;">
-                        <a href="https://www.facebook.com/turningandtargetpoint" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
-                        <a href="https://www.youtube.com/channel/UC8hBhB9Kb0q4YR7WbqWwQw" target="_blank"><i class="fab fa-youtube fa-2x"></i></a>
-                        <a href="https://www.instagram.com/turningandtargetpoint/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-                        <a href="https://www.linkedin.com/company/turning-point-job-aid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="https://www.facebook.com/turningandtargetpoint" target="_blank"><i
+                                class="fab fa-facebook fa-2x"></i></a>
+                        <a href="https://www.youtube.com/channel/UC8hBhB9Kb0q4YR7WbqWwQw" target="_blank"><i
+                                class="fab fa-youtube fa-2x"></i></a>
+                        <a href="https://www.instagram.com/turningandtargetpoint/" target="_blank"><i
+                                class="fab fa-instagram fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/company/turning-point-job-aid/" target="_blank"><i
+                                class="fab fa-linkedin fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -632,9 +689,9 @@
                 <div class="footer-section" style="font-weight: bold;">
                     <h4>Head Office</h4>
                     @forelse($headOffices as $office)
-                    <div >
-                        <p> {{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
-                    </div>
+                        <div>
+                            <p> {{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
+                        </div>
                     @empty
                         <p>No head office information available.</p>
                     @endforelse
@@ -642,9 +699,9 @@
                 <div class="footer-section" style="font-weight: bold;">
                     <h4>Corporate Office</h4>
                     @forelse($corporateOffices as $office)
-                    <div>
-                        <p>{{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
-                    </div>
+                        <div>
+                            <p>{{ $office->address_line1 }} <br> {{ $office->address_line2 }}<br> {{ $office->phone }}</p>
+                        </div>
                     @empty
                         <p>No corporate office information available.</p>
                     @endforelse
@@ -656,6 +713,9 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         var swiper = new Swiper('.review-slider', {
@@ -691,14 +751,26 @@
             mobileNav.classList.toggle('active');
         });
 
-        // Close mobile nav when a link is clicked
-        document.querySelectorAll('#mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-            });
-        });
-    </script>
+                // Close mobile nav when a link is clicked
 
-</body>
+                document.querySelectorAll('#mobile-nav a').forEach(link => {
+
+                    link.addEventListener('click', () => {
+
+                        mobileNav.classList.remove('active');
+
+                    });
+
+                });
+
+        
+
+
+
+            </script>
+
+        
+
+        </body>
 
 </html>

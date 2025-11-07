@@ -16,29 +16,30 @@
 
     <section class="hero-section">
         <div class="container">
-            <div class="row">
-                @if($promotions->count() > 0)
-                    @foreach($promotions as $promotion)
-                        <div class="col-md-6 mb-4">
-                            <style>
-                                .promotion-card h1:hover {
-                                    transition: background-color 0.3s, color 0.3s;
-                                    background-color: white;
-                                    color: #e53935;
-                                    cursor: pointer;
-                                }
-                            </style>
-                            <div class="promotion-card" style="border: 4px solid #e53935;text-align: center;">
-                                <a href="{{ route('promotion.show', $promotion) }}">
-                                    <img src="{{ asset($promotion->image) }}" alt="{{ $promotion->title }}" class="img-fluid">
-                                </a>
-                                <a href="{{ route('promotion.show', $promotion) }}">
-                                <h1 style="font-weight: 700;place-self: center;cursor: pointer;background: #e53935;border-radius: 13px;color: white;padding: 14px;font-size: 22px;">{{ $promotion->title }}</h1>
-                                </a>
+            <div class="row d-flex align-items-stretch justify-content-center">
+                @forelse($branchesWithContent as $branch)
+                    <div class="col-md-5 mb-4">
+                        <div class="branch-card h-100" style="border: 4px solid #e53935;text-align: center;border-radius: 10px;">
+                            <a href="{{ route('frontend.branches.show_courses', $branch->slug) }}">
+                                <img src="{{ asset($branch->logo) }}" alt="{{ $branch->name }}" class="img-fluid" style="width: 70%;height: auto;">
+                            </a>
+                            <div style="padding: 10px 35px;"> 
+                                @forelse($branch->categories as $category)
+                                    <a href="{{ route('frontend.categories.show_courses', $category->slug) }}" class="btn btn-primary btn-block category-button">{{ $category->name }}</a>
+                                @empty
+                                    <div class="col-12 text-center">
+                                        <p>No categories available for {{ $branch->name }}.</p>
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
-                    @endforeach
-                @endif
+                        
+                    </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>No branches available.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -113,99 +114,6 @@
             </div>
         </div>
     </section>
-{{-- 
-    <section class="courses">
-        <div class="container">
-            <h2 class="section-title">Our Popular Courses</h2>
-            <div class="course-categories">
-                <div class="category">
-                    <div class="icon"><i class="fas fa-university"></i></div>
-                    <h3>Bank Job Preparation</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3>MBA Admission</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-school"></i></div>
-                    <h3>PRIMARY & NTRCA</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-globe"></i></div>
-                    <h3>E-Language</h3>
-                </div>
-                <div class="category">
-                    <div class="icon"><i class="fas fa-landmark"></i></div>
-                    <h3>BCS Preparation</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="upcoming-batches">
-        <div class="container">
-            <h2 class="section-title">Upcoming Batches</h2>
-            <div class="row">
-                @php
-                    use App\Models\Batch;
-                    $upcomingBatches = Batch::with('course')->where('start_date', '>=', now())->orderBy('start_date')->limit(4)->get();
-                @endphp
-
-                @forelse($upcomingBatches as $batch)
-                    <div class="col-md-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title text-primary">{{ $batch->name }}</h5>
-                                <p class="card-text"><strong>Course:</strong> {{ $batch->course->name ?? 'N/A' }}</p>
-                                <p class="card-text"><strong>Starts:</strong>
-                                    {{ \Carbon\Carbon::parse($batch->start_date)->format('M d, Y') }}</p>
-                                <p class="card-text"><strong>Ends:</strong>
-                                    {{ \Carbon\Carbon::parse($batch->end_date)->format('M d, Y') }}</p>
-                                <a href="{{ route('student.enroll.create') }}" class="btn btn-sm btn-primary mt-2">Enroll
-                                    Now</a>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-12 text-center">
-                        <p>No upcoming batches at the moment. Please check back later!</p>
-                    </div>
-                @endforelse
-            </div>
-            <div class="text-center mt-4">
-                <a href="/batch-schedule" class="btn btn-primary">View All Batches</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="reviews">
-        <div class="container">
-            <h2 class="section-title">What Our Students Say</h2>
-            <div class="swiper-container review-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="review">
-                            <img src="https://picsum.photos/100/100?random=1" alt="Reviewer">
-                            <div class="stars">★★★★★</div>
-                            <p>"Turning Point is the Pioneer and the most effective coaching centre for upgrading any
-                                job seekers career..."</p>
-                            <div class="author">- Mahmood Ibn Bhuiyan</div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="review">
-                            <img src="https://picsum.photos/100/100?random=2" alt="Reviewer">
-                            <div class="stars">★★★★★</div>
-                            <p>"লক্ষ্য পূরণ করার জার্নিটা শুরু হয় ২০১৩ সালে, ঢাকায় যাই BCS Coaching করার জন্য, Exam দেই
-                                But Output Zero..."</p>
-                            <div class="author">- Popy Talpatra</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section> --}}
 
      <section class="why-choose-us bg-gray p-0 ">
            <img src="{{ asset('images/directors.webp') }}" alt="" style="width: 100%;">

@@ -188,88 +188,34 @@
         </li>
     </ul>
 </li>
-{{-- Settings --}}
-@if(can('settings'))
+
+{{-- Frontend Manager --}}
 <li class="nav-item">
-    <a class="nav-link {!! (Request::is('siteSettings*') || Request::is('designations*') || Request::is('admin/payment_methods*')) ? 'active' : '' !!}" data-bs-toggle="collapse" href="#settings_menu" role="button" aria-expanded="false" aria-controls="settings_menu">
-        <i class="icon im im-icon-Gear"></i>
-        <span class="item-name">Settings</span>
+    <a class="nav-link {!! (Request::is('admin/branches*') || Request::is('admin/categories*') || Request::is('admin/frontend_manager_courses*')) ? 'active' : '' !!}" data-bs-toggle="collapse" href="#frontendManager" role="button" aria-expanded="{{ (Request::is('admin/branches*') || Request::is('admin/categories*') || Request::is('admin/frontend_manager_courses*')) ? 'true' : 'false' }}" aria-controls="frontendManager">
+        <i class="icon im im-icon-Monitor-Analytics"></i>
+        <span class="item-name">Frontend Manager</span>
         <i class="right-icon im im-icon-Arrow-Right"></i>
     </a>
-    <ul class="sub-nav collapse {!! (Request::is('siteSettings*') || Request::is('designations*') || Request::is('termAndConditions*') || Request::is('companies*') || Request::is('locations*') || Request::is('accountLedgers*') || Request::is('customers*') || Request::is('suppliers*') || Request::is('admin/payment_methods*')) ? 'show' : '' !!}" id="settings_menu" data-bs-parent="#sidebar-menu">
-        @if(can('site_settings'))
+    <ul class="sub-nav collapse {!! (Request::is('admin/branches*') || Request::is('admin/categories*') || Request::is('admin/frontend_manager_courses*')) ? 'show' : '' !!}" id="frontendManager" data-bs-parent="#sidebar-menu">
         <li class="nav-item">
-            <a class="nav-link {!! Request::is('siteSettings*') ? 'active' : '' !!}" href="{{ route('siteSettings.index') }}">
-                <i class="icon im im-icon-Settings-Window"></i>
-                <i class="sidenav-mini-icon"> S </i>
-                <span class="item-name">Site Settings</span>
-            </a>
-        </li>
-        @endif
-        @if(can('designations'))
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('designations*') ? 'active' : '' !!}" href="{{ route('designations.index') }}">
-                <i class="icon im im-icon-Teacher"></i>
-                <i class="sidenav-mini-icon"> D </i>
-                <span class="item-name">Designations</span>
-            </a>
-        </li>
-        @endif
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/payment_methods*') ? 'active' : '' !!}" href="{{ route('admin.payment_methods.index') }}">
-                <i class="icon im im-icon-Credit-Card"></i>
-                <span class="item-name">Payment Methods</span>
+            <a class="nav-link {!! Request::is('admin/branches*') ? 'active' : '' !!}" href="{{ route('admin.branches.index') }}">
+                <i class="icon im im-icon-Share-Branch"></i>
+                <span class="item-name">Branches</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/promotions*') ? 'active' : '' !!}" href="{{ route('admin.promotions.index') }}">
-                <i class="icon im im-icon-Gift-Box"></i>
-                <span class="item-name">Promotions</span>
+            <a class="nav-link {!! Request::is('admin/categories*') ? 'active' : '' !!}" href="{{ route('admin.categories.index') }}">
+                <i class="icon im im-icon-Align-Justify-All"></i>
+                <span class="item-name">Categories</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/expert_instructors*') ? 'active' : '' !!}" href="{{ route('admin.expert_instructors.index') }}">
-                <i class="icon im im-icon-Teacher"></i>
-                <span class="item-name">Expert Instructors</span>
+            <a class="nav-link {!! Request::is('admin/frontend_manager_courses*') ? 'active' : '' !!}" href="{{ route('admin.frontend_manager_courses.index') }}">
+                <i class="icon im im-icon-Book"></i>
+                <span class="item-name">Courses</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/course_outlines*') ? 'active' : '' !!}" href="{{ route('admin.course_outlines.index') }}">
-                <i class="icon im im-icon-File-Favorite"></i>
-                <span class="item-name">Course Outlines</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/dedicated_supports*') ? 'active' : '' !!}" href="{{ route('admin.dedicated_supports.index') }}">
-                <i class="icon im im-icon-Headset"></i>
-                <span class="item-name">Dedicated Supports</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/about_links*') ? 'active' : '' !!}" href="{{ route('admin.about_links.index') }}">
-                <i class="icon im im-icon-Information"></i>
-                <span class="item-name">About Links</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/support_emails*') ? 'active' : '' !!}" href="{{ route('admin.support_emails.index') }}">
-                <i class="icon im im-icon-Mail"></i>
-                <span class="item-name">Support Emails</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/head_offices*') ? 'active' : '' !!}" href="{{ route('admin.head_offices.index') }}">
-                <i class="icon im im-icon-Home-3"></i>
-                <span class="item-name">Head Offices</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {!! Request::is('admin/corporate_offices*') ? 'active' : '' !!}" href="{{ route('admin.corporate_offices.index') }}">
-                <i class="icon im im-icon-Building"></i>
-                <span class="item-name">Corporate Offices</span>
-            </a>
-        </li>
-        {{-- Add other settings items here --}}
     </ul>
 </li>
-@endif
+
+{{-- Settings --}}

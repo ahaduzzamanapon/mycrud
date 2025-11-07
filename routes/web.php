@@ -43,6 +43,9 @@ Route::get('/blogs', function () {
 });
 
 Route::get('promotion/{promotion}', [App\Http\Controllers\FrontendController::class, 'showPromotion'])->name('promotion.show');
+Route::get('branches/{branch:slug}/courses', [App\Http\Controllers\FrontendController::class, 'showBranchCourses'])->name('frontend.branches.show_courses');
+Route::get('courses/{course}', [App\Http\Controllers\FrontendController::class, 'showCourseDetail'])->name('frontend.courses.show_detail');
+Route::get('categories/{category:slug}/courses', [App\Http\Controllers\FrontendController::class, 'showCategoryCourses'])->name('frontend.categories.show_courses');
 
 
 
@@ -117,6 +120,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth:web']
     Route::resource('support_emails', App\Http\Controllers\Admin\SupportEmailController::class);
     Route::resource('head_offices', App\Http\Controllers\Admin\HeadOfficeController::class);
     Route::resource('corporate_offices', App\Http\Controllers\Admin\CorporateOfficeController::class);
+    Route::resource('branches', App\Http\Controllers\Admin\BranchController::class);
+    Route::get('api/branches/{branch}/categories', [App\Http\Controllers\Admin\BranchController::class, 'getCategories'])->name('admin.api.branches.categories');
+    Route::resource('categories', App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('frontend_manager_courses', App\Http\Controllers\Admin\FrontendManagerCourseController::class);
+    Route::get('api/categories/{category}/courses', [App\Http\Controllers\Admin\FrontendManagerCourseController::class, 'getCourses']);
 });
 
 Route::group(['prefix' => 'student', 'as' => 'student.'], function(){

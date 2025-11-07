@@ -1,0 +1,82 @@
+.course-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.course-card .img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card .img-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .img-container img {
+    transform: scale(1.05);
+}
+
+.course-card .img-container .course-fee {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #e53935;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.course-card .img-container .view-details-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.course-card:hover .img-container .view-details-hover {
+    opacity: 1;
+}
+
+.course-card .card-body {
+    padding: 20px;
+}
+
+.course-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.course-card .course-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.course-card .course-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-card .course-info .info-item i {
+    color: #e53935;
+}

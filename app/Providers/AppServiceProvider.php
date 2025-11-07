@@ -8,6 +8,9 @@ use App\Models\SupportEmail;
 use App\Models\HeadOffice;
 use App\Models\CorporateOffice;
 use App\Models\AboutLink;
+use App\Models\Branch;
+use App\Models\Category;
+use App\Models\FrontendManagerCourse;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('headOffices', HeadOffice::all());
         View::share('corporateOffices', CorporateOffice::all());
         View::share('aboutLinks', AboutLink::all());
+        View::share('branchesWithContent', Branch::with('categories.courses')->get());
+        View::share('allCourses', \App\Models\FrontendManagerCourse::all());
         // if (config('app.env') !== 'local') {
         //     \URL::forceScheme('https');
         // }
